@@ -1,7 +1,6 @@
 body {
   font-family: "Nunito Sans", sans-serif;
   color: #202224;
-  padding-top: 70px;
   background-color: #f5f6fa;
 }
 
@@ -62,7 +61,6 @@ main > .container {
   color: white;
   font-size: 14px;
   font-weight: 700;
-  width: 100%;
   cursor: pointer;
 }
 
@@ -74,7 +72,7 @@ main > .container {
   background-color: #b7c3df;
 }
 a.button {
-  display: block;
+  display: inline-block;
   text-decoration: none;
   text-align: center;
 }
@@ -82,4 +80,70 @@ a.button {
 .navbar-title {
   font-size: 2rem;
   font-weight: 700;
+  cursor: default;
+}
+.site-index {
+  padding-top: 90px;
+}
+.panel {
+  background-color: red;
+  padding: 1rem 2rem;
+  border-radius: 10px;
+  background-color: #fff;
+  margin: 20px 0;
+}
+.panel-title {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.panel-body {
+}
+.panel-footer {
+  display: flex;
+  justify-content: end;
+  gap: 20px;
+}
+.panel-body {
+  /* margin-bottom: 10px; */
+}
+.panel-body > span {
+  font-size: 0.875rem;
+  font-weight: 400;
+  opacity: 60%;
+  word-wrap: break-word;
+}
+.post-my-posts {
+  padding-top: 90px;
+}
+.textfield {
+  width: 100%;
+  background-color: #f1f4f9;
+  border: #d8d8d8 1px solid;
+  border-radius: 10px;
+  padding: 10px;
+}
+.post-title-input,
+.post-title-input::placeholder {
+  font-weight: 700;
+}
+
+.post-desc-input::placeholder {
+  font-size: 14px;
+  color: #a6a6a6;
+}
+.form-group {
+  margin-bottom: 10px;
+}
+
+.form-buttons {
+  display: flex;
+  justify-content: end;
+}
+.post-title-edit {
+  font-weight: 700;
+}
+.post-desc-edit {
+  font-size: 14px;
+  color: #a6a6a6;
 }

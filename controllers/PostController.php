@@ -62,7 +62,8 @@ class PostController extends Controller
         }
 
         return $this->render('update', [
-            'model' => $model,
+             'model' => new Post(), // для формы создания
+        'posts' => Post::find()->all()
         ]);
     }
 

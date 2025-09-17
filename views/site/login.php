@@ -16,19 +16,19 @@ $this->title = 'Авторизация';
     <?= $form->field($model, 'email')
         ->textInput([
             'class' => 'form-control',
-            'placeholder' => 'Введите ваш email',
+            'placeholder' => 'Enter Email',
             'autofocus' => true
         ])
-        ->label('Email address:') ?>
+        ->label('Email address', ['class' => 'form-control-label']) ?>
 
 
 
     <?= $form->field($model, 'password')
         ->passwordInput([
             'class' => 'form-control',
-            'placeholder' => 'Введите пароль'
+            'placeholder' => 'Enter Password'
         ])
-        ->label('Password') ?>
+        ->label('Password', ['class' => 'form-control-label']) ?>
 
 
 

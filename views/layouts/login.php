@@ -69,6 +69,10 @@ use yii\helpers\Html;
             font-size: 16px;
             transition: border-color 0.3s ease;
         }
+        .form-control-label {
+            font-weight: 600;
+            opacity: 80%;
+        }
         
         .form-control:focus {
             border-color: #667eea;

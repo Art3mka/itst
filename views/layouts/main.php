@@ -39,7 +39,7 @@ AppAsset::register($this);
     
     NavBar::begin([
         'brandLabel' => Html::tag('span', $pageTitle, ['class' => 'navbar-title']),
-        'brandUrl' => Yii::$app->homeUrl,
+        'brandUrl' => null,
         'options' => [
             'class' => 'navbar navbar-expand navbar-light fixed-top',
         ],

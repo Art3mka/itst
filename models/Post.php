@@ -23,8 +23,8 @@ class Post extends ActiveRecord
     public function attributeLabels()
     {
         return [
-            'title' => 'Заголовок',
-            'content' => 'Содержание',
+            'title' => 'Title',
+            'content' => 'Description',
         ];
     }
 

@@ -6,57 +6,72 @@ use yii\widgets\ActiveForm;
 $this->title = 'Мои посты';
 ?>
 <div class="post-my-posts">
-    <h1><?= Html::encode($this->title) ?></h1>
 
     <div class="panel panel-primary">
-        <div class="panel-heading">
-            <h3 class="panel-title">Создать новый пост</h3>
-        </div>
         <div class="panel-body">
             <?php $form = ActiveForm::begin(); ?>
             
-            <?= $form->field($model, 'title') ?>
-            <?= $form->field($model, 'content')->textarea(['rows' => 6]) ?>
+             <?= $form->field($model, 'title')->textInput([
+            'placeholder' => 'Title',
+            'class' => ['textfield post-title-input']
+        ])->label(false) ?>
+
+            <?= $form->field($model, 'content')->textarea([
+            'rows' => 6,
+            'placeholder' => 'Description',
+            'class' => ['textfield post-desc-input']
+        ])->label(false) ?>
             
-            <div class="form-group">
-                <?= Html::submitButton('Создать пост', ['class' => 'btn btn-success']) ?>
-            </div>
+                <div class="form-buttons">
+                    <?= Html::submitButton('Add', ['class' => 'button button-primary']) ?>
+                </div>
+                
+
             
             <?php ActiveForm::end(); ?>
         </div>
     </div>
-
-    <h2>Мои посты</h2>
-    
-    <?php if (empty($posts)): ?>
-        <div class="alert alert-info">У вас пока нет постов.</div>
+   
+     <?php if (empty($posts)): ?>
+        <div class="alert alert-info">Type Your First Post!</div>
     <?php else: ?>
         <?php foreach ($posts as $post): ?>
+            <!-- Форма для редактирования каждого поста -->
+            <?php $form = ActiveForm::begin([
+                'action' => ['update', 'id' => $post->id],
+                'options' => ['class' => 'post-edit-form']
+            ]); ?>
+            
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title"><?= Html::encode($post->title) ?></h3>
+                    <?= $form->field($post, 'title')->textInput([
+                        'class' => 'textfield form-control post-title-edit',
+                        'placeholder' => 'Title'
+                    ])->label(false) ?>
                 </div>
+                
                 <div class="panel-body">
-                    <?= nl2br(Html::encode($post->content)) ?>
+                    <?= $form->field($post, 'content')->textarea([
+                        'rows' => 4,
+                        'class' => 'textfield form-control post-desc-edit',
+                        'placeholder' => 'Description'
+                    ])->label(false) ?>
                 </div>
+                
                 <div class="panel-footer">
-                    <div class="row">
-                        <div class="col-md-6 text-muted">
-                            Дата: <?= Yii::$app->formatter->asDatetime($post->created_at) ?>
-                        </div>
-                        <div class="col-md-6 text-right">
-                            <?= Html::a('Редактировать', ['update', 'id' => $post->id], ['class' => 'btn btn-xs btn-primary']) ?>
-                            <?= Html::a('Удалить', ['delete', 'id' => $post->id], [
-                                'class' => 'btn btn-xs btn-danger',
-                                'data' => [
-                                    'confirm' => 'Вы уверены, что хотите удалить этот пост?',
-                                    'method' => 'post',
-                                ],
-                            ]) ?>
-                        </div>
-                    </div>
+                    
+                    <?= Html::a('Delete', ['delete', 'id' => $post->id], [
+                        'class' => 'button button-secondary',
+                        'data' => [
+                            'confirm' => 'Are you sur?',
+                            'method' => 'post',
+                        ],
+                    ]) ?>
+                    <?= Html::submitButton('Save', ['class' => 'button button-primary']) ?>
                 </div>
             </div>
+            
+            <?php ActiveForm::end(); ?>
         <?php endforeach; ?>
     <?php endif; ?>
 </div>
