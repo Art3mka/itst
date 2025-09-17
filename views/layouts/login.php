@@ -41,8 +41,9 @@ use yii\helpers\Html;
         }
 
         .login-subtitle {
+            text-align: center;
             font-weight: 600;
-            color: #202224;
+            
             opacity: 80%;
         }
         

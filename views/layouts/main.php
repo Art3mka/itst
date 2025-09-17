@@ -28,34 +28,43 @@ AppAsset::register($this);
 
 <div class="wrap">
     <?php
+
+    $controller = Yii::$app->controller;
+    $action = Yii::$app->controller->action;
+
+    $isMyPostsPage = ($controller->id === 'post' && $action->id === 'my-posts');
+    $pageTitle = $isMyPostsPage ? 'My Posts' : 'Posts';
+    $toggleButtonText = $isMyPostsPage ? 'All Posts' : 'My Posts';
+    $toggleButtonUrl = $isMyPostsPage ? ['/site/index'] : ['/post/my-posts'];
+    
     NavBar::begin([
-        'brandLabel' => 'Мини-блог',
+        'brandLabel' => Html::tag('span', $pageTitle, ['class' => 'navbar-title']),
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
-            'class' => 'navbar-inverse navbar-fixed-top',
+            'class' => 'navbar navbar-expand navbar-light fixed-top',
         ],
+
     ]);
     
-    $menuItems = [
-        ['label' => 'Главная', 'url' => ['/site/index']],
-    ];
-    
     if (Yii::$app->user->isGuest) {
-        $menuItems[] = ['label' => 'Войти', 'url' => ['/site/login']];
+        $menuItems[] = ['label' => 'Login',
+         'url' => ['/site/login'],
+        'linkOptions' => ['class' => 'button button-primary']];
     } else {
-        $menuItems[] = ['label' => 'Мои посты', 'url' => ['/post/my-posts']];
+        $menuItems[] = ['label' => $toggleButtonText, 'url' => $toggleButtonUrl,
+        'linkOptions' => ['class' => 'button button-secondary']];
         $menuItems[] = [
-            // Исправляем здесь: используем email вместо username
-            'label' => 'Выйти (' . Yii::$app->user->identity->email . ')',
+            'label' => 'Logout',
             'url' => ['/site/logout'],
-            'linkOptions' => ['data-method' => 'post']
+            'linkOptions' => ['data-method' => 'post', 'class' => 'button button-primary']
         ];
     }
     
     echo Nav::widget([
-        'options' => ['class' => 'navbar-nav navbar-right'],
+        'options' => ['class' => 'navbar-nav ms-auto gap-3'], // ms-auto для выравнивания справа в Bootstrap 5
         'items' => $menuItems,
     ]);
+    
     NavBar::end();
     ?>
 
@@ -67,12 +76,6 @@ AppAsset::register($this);
     </div>
 </div>
 
-<footer class="footer">
-    <div class="container">
-        <p class="pull-left">&copy; Мини-блог <?= date('Y') ?></p>
-        <p class="pull-right"><?= Yii::powered() ?></p>
-    </div>
-</footer>
 
 <?php $this->endBody() ?>
 </body>

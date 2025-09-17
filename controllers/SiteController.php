@@ -28,8 +28,7 @@ class SiteController extends Controller
 
     public function actionLogin()
     {
-        // Устанавливаем пустой layout
-        $this->layout = 'blank';
+        $this->layout = 'login';
     
         if (!Yii::$app->user->isGuest) {
             return $this->goHome();
