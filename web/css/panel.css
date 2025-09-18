@@ -1,0 +1,22 @@
+.panel {
+  padding: 1rem 2rem;
+  border-radius: 10px;
+  background-color: #fff;
+  margin: 20px 0;
+}
+.panel-title {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.panel-footer {
+  display: flex;
+  justify-content: end;
+  gap: 20px;
+}
+.panel-body > span {
+  font-size: 0.875rem;
+  font-weight: 400;
+  opacity: 60%;
+  word-wrap: break-word;
+}

@@ -1,8 +1,4 @@
 <?php
-
-/* @var $this \yii\web\View */
-/* @var $content string */
-
 use yii\helpers\Html;
 use yii\bootstrap5\Nav;
 use yii\bootstrap5\NavBar;
@@ -61,7 +57,7 @@ AppAsset::register($this);
     }
     
     echo Nav::widget([
-        'options' => ['class' => 'navbar-nav ms-auto gap-3'], // ms-auto для выравнивания справа в Bootstrap 5
+        'options' => ['class' => 'navbar-nav ms-auto gap-3'],
         'items' => $menuItems,
     ]);
     
