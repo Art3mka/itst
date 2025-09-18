@@ -9,7 +9,7 @@ $this->title = 'Мини-блог';
     <div class="body-content">
         
         <?php if (empty($posts)): ?>
-            <div class="alert alert-info">Пока нет постов.</div>
+            <div class="alert alert-info">Type Ypur First Post!</div>
         <?php else: ?>
             <?php foreach ($posts as $post): ?>
                 <div class="panel ">

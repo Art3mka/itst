@@ -2,11 +2,12 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\ActiveForm;
+use app\widgets\Alert;
 
 $this->title = 'Мои посты';
 ?>
 <div class="post-my-posts">
-
+    <?= Alert::widget() ?>
     <div class="panel panel-primary">
         <div class="panel-body">
             <?php $form = ActiveForm::begin(); ?>
@@ -36,7 +37,6 @@ $this->title = 'Мои посты';
         <div class="alert alert-info">Type Your First Post!</div>
     <?php else: ?>
         <?php foreach ($posts as $post): ?>
-            <!-- Форма для редактирования каждого поста -->
             <?php $form = ActiveForm::begin([
                 'action' => ['update', 'id' => $post->id],
                 'options' => ['class' => 'post-edit-form']
@@ -63,7 +63,7 @@ $this->title = 'Мои посты';
                     <?= Html::a('Delete', ['delete', 'id' => $post->id], [
                         'class' => 'button button-secondary',
                         'data' => [
-                            'confirm' => 'Are you sur?',
+                            'confirm' => 'Are you sure?',
                             'method' => 'post',
                         ],
                     ]) ?>

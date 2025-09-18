@@ -9,6 +9,15 @@ use app\models\Post;
 
 class PostController extends Controller
 {
+    public function beforeAction($action)
+    {
+        // Проверка сессии
+        if (!Yii::$app->session->isActive) {
+            Yii::$app->session->open();
+        }
+        return parent::beforeAction($action);
+    }
+
     public function behaviors()
     {
         return [
@@ -27,6 +36,7 @@ class PostController extends Controller
 
     public function actionMyPosts()
     {
+
         $posts = Post::find()
             ->where(['user_id' => Yii::$app->user->id])
             ->orderBy(['created_at' => SORT_DESC])
@@ -39,6 +49,8 @@ class PostController extends Controller
             if ($model->save()) {
                 Yii::$app->session->setFlash('success', 'Пост успешно создан!');
                 return $this->refresh();
+            } else {
+                Yii::$app->session->setFlash('error', 'Ошибка при сохранении: ' . print_r($model->getErrors(), true));
             }
         }
 
@@ -62,8 +74,7 @@ class PostController extends Controller
         }
 
         return $this->render('update', [
-             'model' => new Post(), // для формы создания
-        'posts' => Post::find()->all()
+            'model' => $model,
         ]);
     }
 
