@@ -57,10 +57,10 @@ class PostController extends Controller
         if ($model->load(Yii::$app->request->post())) {
             $model->user_id = Yii::$app->user->id;
             if ($model->save()) {
-                Yii::$app->session->setFlash('success', 'Пост успешно создан!');
+                Yii::$app->session->setFlash('success', 'Post created successfully!');
                 return $this->refresh();
             } else {
-                Yii::$app->session->setFlash('error', 'Ошибка при сохранении: ' . print_r($model->getErrors(), true));
+                Yii::$app->session->setFlash('error', 'Error while saving: ' . print_r($model->getErrors(), true));
             }
         }
 
@@ -76,11 +76,11 @@ class PostController extends Controller
         $model = $this->findModel($id);
 
         if (!$model->isAuthor()) {
-            throw new NotFoundHttpException('У вас нет прав для редактирования этого поста.');
+            throw new NotFoundHttpException("You don't have permissions.");
         }
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            Yii::$app->session->setFlash('success', 'Пост успешно обновлен!');
+            Yii::$app->session->setFlash('success', 'Post updated successfully!');
             return $this->redirect(['my-posts']);
         }
 
@@ -94,12 +94,12 @@ class PostController extends Controller
         $model = $this->findModel($id);
 
         if (!$model->isAuthor()) {
-            throw new NotFoundHttpException('У вас нет прав для удаления этого поста.');
+            throw new NotFoundHttpException("You don't have permissions.");
         }
 
         if (Yii::$app->request->isPost) {
             $model->delete();
-            Yii::$app->session->setFlash('success', 'Пост успешно удален!');
+            Yii::$app->session->setFlash('success', 'Post deleted successfully!');
             return $this->redirect(['my-posts']);
         }
 
@@ -114,6 +114,6 @@ class PostController extends Controller
             return $model;
         }
 
-        throw new NotFoundHttpException('Пост не найден.');
+        throw new NotFoundHttpException('Post not found');
     }
 }
