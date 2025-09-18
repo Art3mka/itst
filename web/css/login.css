@@ -3,7 +3,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-image: url("../../web/images/Shape.png");
+  background-image: url("/images/Shape.png");
+  background-size: cover;
+  background-repeat: no-repeat;
   background-color: #4880ff;
 }
 
