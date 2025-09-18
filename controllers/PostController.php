@@ -5,13 +5,13 @@ use Yii;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\AccessControl;
+use yii\data\Pagination;
 use app\models\Post;
 
 class PostController extends Controller
 {
     public function beforeAction($action)
     {
-        // Проверка сессии
         if (!Yii::$app->session->isActive) {
             Yii::$app->session->open();
         }
@@ -37,9 +37,19 @@ class PostController extends Controller
     public function actionMyPosts()
     {
 
-        $posts = Post::find()
+        $query = Post::find()
             ->where(['user_id' => Yii::$app->user->id])
-            ->orderBy(['created_at' => SORT_DESC])
+            ->orderBy(['created_at' => SORT_DESC]);
+        
+        $pagination = new Pagination([
+            'totalCount' => $query->count(),
+            'pageSize' => 7,
+            'pageSizeParam' => false,
+            'forcePageParam' => false,
+        ]);
+        
+        $posts = $query->offset($pagination->offset)
+            ->limit($pagination->limit)
             ->all();
 
         $model = new Post();
@@ -57,6 +67,7 @@ class PostController extends Controller
         return $this->render('my-posts', [
             'posts' => $posts,
             'model' => $model,
+            'pagination' => $pagination,
         ]);
     }
 

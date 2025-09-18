@@ -3,6 +3,7 @@ namespace app\controllers;
 
 use Yii;
 use yii\web\Controller;
+use yii\data\Pagination;
 use app\models\LoginForm;
 use app\models\Post;
 
@@ -19,10 +20,22 @@ class SiteController extends Controller
 
     public function actionIndex()
     {
-        $posts = Post::find()->orderBy(['created_at' => SORT_DESC])->all();
+        $query = Post::find()->orderBy(['created_at' => SORT_DESC]);
         
+        $pagination = new Pagination([
+            'totalCount' => $query->count(),
+            'pageSize' => 7,
+            'pageSizeParam' => false,
+            'forcePageParam' => false,
+        ]);
+
+        $posts = $query->offset($pagination->offset)
+            ->limit($pagination->limit)
+            ->all();
+
         return $this->render('index', [
             'posts' => $posts,
+            'pagination' => $pagination,
         ]);
     }
 

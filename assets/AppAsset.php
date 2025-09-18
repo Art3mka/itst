@@ -23,6 +23,7 @@ class AppAsset extends AssetBundle
         'css/site.css',
         'css/buttons.css',
         'css/panel.css',
+        'css/pagination.css',
     ];
     public $js = [
     ];

@@ -1,6 +1,7 @@
 <?php
 use yii\helpers\Html;
 use yii\helpers\Url;
+use yii\widgets\LinkPager;
 
 $this->title = 'Мини-блог';
 ?>
@@ -22,6 +23,18 @@ $this->title = 'Мини-блог';
                     
                 </div>
             <?php endforeach; ?>
+
+            <div class="text-center">
+                        <?= LinkPager::widget([
+                            'pagination' => $pagination,
+                            'options' => ['class' => 'pagination'],
+                            'activePageCssClass' => 'active',
+                            'linkContainerOptions' => ['class' => 'page-item'],
+                            'linkOptions' => ['class' => 'page-link'],
+                            'disabledListItemSubTagOptions' => ['tag' => 'a', 'class' => 'page-link'],
+                        ]) ?>
+                    </div>
+
         <?php endif; ?>
     </div>
 </div>
