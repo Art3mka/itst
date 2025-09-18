@@ -16,6 +16,13 @@ class m250917_091319_create_test_user extends Migration
             'access_token' => Yii::$app->security->generateRandomString(),
             'created_at' => date('Y-m-d H:i:s'),
         ]);
+        $this->insert('users', [
+            'email' => 'test2@example.com',
+            'password' => Yii::$app->security->generatePasswordHash('password456'),
+            'auth_key' => Yii::$app->security->generateRandomString(),
+            'access_token' => Yii::$app->security->generateRandomString(),
+            'created_at' => date('Y-m-d H:i:s'),
+        ]);
     }
 
     /**
@@ -24,6 +31,7 @@ class m250917_091319_create_test_user extends Migration
     public function safeDown()
     {
         $this->delete('users', ['email' => 'test@example.com']);
+        $this->delete('users', ['email' => 'test2@example.com']);
     }
 
     /*
