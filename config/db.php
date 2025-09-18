@@ -2,9 +2,10 @@
 
 return [
     'class' => 'yii\db\Connection',
-    'dsn' => 'mysql:host=db;dbname=mini_blog',
+    'dsn' => 'mysql:host=localhost;dbname=mini_blog',
     'username' => 'root',
-    'password' => 'rootpassword',
+    // 'password' => 'rootpassword', Для запуска Docker контейнера
+    'password' => '',
     'charset' => 'utf8',
 
     // Schema cache options (for production environment)
