@@ -2,13 +2,6 @@
 .gitignore
 .gitattributes
 
-Dockerfile
-.dockerignore
-docker-compose.yml
-
-runtime/
-web/assets/
-
 vendor/
 
 .idea/
@@ -23,7 +16,6 @@ vendor/
 
 README.md
 LICENSE
-composer.lock
 
 tests/
 codeception.yml
